@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:property-placeholder location="classpath:application.properties"/>
+    <!-- Define your beans here -->
+    <bean id="myCricketCoach"
+        class="com.example.springdemo.CricketCoach">
+
+        <property name="fortuneService" ref="myFortuneService"/>
+        <property name="emailAddress" value="${foo.email}"/>
+        <property name="team" value="${foo.team}"/>
+    </bean>
+
+    <bean id="myBasketballCoach"
+          class="com.example.springdemo.BasketballCoach">
+        <constructor-arg ref="myRandomFortuneService"/>
+    </bean>
+
+    <bean id="myRandomFortuneService"
+          class="com.example.springdemo.RandomFortuneService">
+    </bean>
+
+    <bean id="myFortuneService"
+        class="com.example.springdemo.HappyFortuneService">
+    </bean>
+
+    <bean id="myCoach"
+          class="com.example.springdemo.TrackCoach">
+        <constructor-arg ref="myFortuneService"/>
+    </bean>
+</beans>
+
+
+
+
+
